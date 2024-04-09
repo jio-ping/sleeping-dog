@@ -14,7 +14,7 @@ export default function Input() {
     <>
       <input
         id="petName"
-        className={`w-[80px] border-b-2 border-black bg-transparent py-3 text-center font-['TTLaundryGothicB'] text-[20px] text-black  outline-none dark:border-dark-txt-1 dark:text-dark-txt-1`}
+        className={`h-12 w-[80px] border-b-2 border-black bg-transparent text-center font-['TTLaundryGothicB'] text-xl  text-black outline-none dark:border-dark-txt-1 dark:text-dark-txt-1`}
         type="text"
         placeholder="이름🐶🐱"
         onBlur={handleSaveName}
