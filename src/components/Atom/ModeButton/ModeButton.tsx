@@ -1,19 +1,16 @@
 import darkmodeIcon from "@/assets/darkmode.svg";
-import lightmode from "@/assets/lightmode.svg";
-
+import lightmodeIcon from "@/assets/lightmode.svg";
 import useMode from "@/store/useMode";
 
 export default function ModeButton() {
   const { darkmode, convertMode } = useMode((state) => state);
-  console.log(darkmode);
-  console.log(convertMode);
   return (
     <button onClick={convertMode}>
       <figure className="flex flex-col items-center justify-around dark:text-dark-txt-1">
         {darkmode ? (
           <img className="w-8" src={darkmodeIcon} />
         ) : (
-          <img className="w-8" src={lightmode} />
+          <img className="w-8" src={lightmodeIcon} />
         )}
         <figcaption>
           {darkmode ? (
