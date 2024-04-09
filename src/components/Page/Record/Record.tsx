@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input } from "@/components/Atom/index";
+import { Input, ModeButton } from "@/components/Atom/index";
 import Modal from "@/components/Molecules/Modal/Modal.tsx";
 /*
 
@@ -21,7 +21,7 @@ export default function Record() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    let countId: string | number | NodeJS.Timeout | undefined;
+    let countId: number;
     if (measurement && remainTime > 0) {
       countId = setInterval(
         () => setRemainTime((remainTime) => remainTime - 1),
@@ -39,7 +39,7 @@ export default function Record() {
     <div className="p-4">
       <div className="flex justify-between">
         <Input />
-        <button>모드변경</button>
+        <ModeButton />
       </div>
       <div className="font-['TTLaundryGothicB']">
         <p>
