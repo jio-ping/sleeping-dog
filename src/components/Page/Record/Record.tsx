@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input, ModeButton } from "@/components/Atom/index";
+import { Input, ModeButton, CountButton } from "@/components/Atom/index";
 import Modal from "@/components/Molecules/Modal/Modal.tsx";
 /*
 
@@ -52,6 +52,7 @@ export default function Record() {
       <button className="" onClick={() => setMeasurement((prev) => !prev)}>
         {measurement ? "멈춤" : "시작"}
       </button>
+      <CountButton>시작</CountButton>
       <button onClick={() => setCount((count) => count + 1)}>+1</button>
       {modal ? <Modal closeFn={() => setModal(false)} /> : ""}
     </div>
