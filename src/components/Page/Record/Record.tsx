@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Input, ModeButton } from "@/components/Atom/index";
 import Modal from "@/components/Molecules/Modal/Modal.tsx";
 /*
 
@@ -21,11 +21,11 @@ export default function Record() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    let countId: string | number | NodeJS.Timeout | undefined;
+    let countId: number;
     if (measurement && remainTime > 0) {
       countId = setInterval(
         () => setRemainTime((remainTime) => remainTime - 1),
-        1000
+        1000,
       );
     } else if (remainTime === 0) {
       setMeasurement(false);
@@ -36,9 +36,11 @@ export default function Record() {
   }, [measurement, remainTime]);
 
   return (
-    <>
-      <input type="text" placeholder="강아지이름" />
-      <button>모드변경</button>
+    <div className="p-4">
+      <div className="flex justify-between">
+        <Input />
+        <ModeButton />
+      </div>
       <div className="font-['TTLaundryGothicB']">
         <p>
           남은 시간 <em>{remainTime}</em> 초
@@ -47,11 +49,11 @@ export default function Record() {
           <em>{count}</em>회
         </p>
       </div>
-      <button className="p-5" onClick={() => setMeasurement((prev) => !prev)}>
+      <button className="" onClick={() => setMeasurement((prev) => !prev)}>
         {measurement ? "멈춤" : "시작"}
       </button>
       <button onClick={() => setCount((count) => count + 1)}>+1</button>
       {modal ? <Modal closeFn={() => setModal(false)} /> : ""}
-    </>
+    </div>
   );
 }
