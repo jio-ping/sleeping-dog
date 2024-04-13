@@ -1,23 +1,32 @@
+interface ResultProps {
+  time: string;
+  name: string;
+  counts: number;
+}
 interface ModalProps {
   closeFn: React.MouseEventHandler<HTMLButtonElement>;
+  result: ResultProps;
 }
+
 import useMode from "@/store/useMode";
 
-export default function Modal({ closeFn }: ModalProps) {
+export default function Modal({ closeFn, result }: ModalProps) {
+  const { time, name, counts } = result;
   const darkmode = useMode((state) => state.darkmode);
 
   return (
-    <div
-      className={`rounded-8 mx-auto flex w-[80%] flex-col justify-center border-none font-['TTLaundryGothicB'] font-normal ${darkmode ? "bg-black" : "bg-white"} opacity-85`}
+    <dialog
+      open={true}
+      className={`rounded-8 inset-0 flex w-[80%] flex-col  justify-center border-none font-['TTLaundryGothicB'] font-normal ${darkmode ? "bg-black" : "bg-white"} opacity-85`}
     >
-      <div className="my-7 flex flex-col gap-1 text-center">
+      <div className="my-7 flex  flex-col gap-1 text-center">
         <h3 className={`text-2xl ${darkmode ? "text-white" : "text-black"}`}>
           정상이에요 !
         </h3>
         <p
           className={`font-sans ${darkmode ? "text-dark-gray" : "text-black"}`}
         >
-          2024.04.06 18:30 꽁이 20회/분
+          {`${time}, ${name}, ${counts}`}
         </p>
       </div>
       <div
@@ -31,6 +40,6 @@ export default function Modal({ closeFn }: ModalProps) {
         </button>
         <button className="flex-grow py-2">기록 📝</button>
       </div>
-    </div>
+    </dialog>
   );
 }
