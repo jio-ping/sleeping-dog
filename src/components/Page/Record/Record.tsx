@@ -15,19 +15,20 @@ import useMode from "@/store/useMode";
   기록 -> localstorage에 저장 / 초기화
   닫기 -> 초기화
 4. 강아지 input에 이름 작성하면 새로고침할때도 이름 저장
-5. 60초 지나면 모달 상태일땐 
+
 */
 
 const INITIAL = {
-  second: 60,
+  second: 10,
 };
+
 export default function Record() {
   const [measurement, setMeasurement] = useState(false);
   const [remainTime, setRemainTime] = useState(INITIAL.second);
   const [count, setCount] = useState(0);
   const [modal, setModal] = useState(false);
-
   const { darkmode } = useMode((state) => state);
+
   useEffect(() => {
     let countId: number;
     if (!modal && measurement && remainTime > 0) {
@@ -38,7 +39,6 @@ export default function Record() {
     } else if (remainTime === 0) {
       setMeasurement(false);
       setRemainTime(INITIAL.second);
-      setCount(0);
       setModal(true);
     }
     return () => clearInterval(countId);
@@ -46,38 +46,44 @@ export default function Record() {
   getTime();
 
   return (
-    <div className="flex h-full flex-col items-center justify-between p-4">
+    <div className="relative flex h-full flex-col items-center justify-between p-4">
       <div className="flex w-full justify-between">
         <Input />
         <ModeButton />
       </div>
-      {modal ? <Modal closeFn={() => setModal(false)} /> : ""}
       <div className="w-[75%] text-center ">
         <CircularProgressbarWithChildren
           counterClockwise={true}
-          value={(remainTime / 60) * 100}
+          value={(remainTime / INITIAL.second) * 100}
           className="mb-8"
           styles={{
             path: {
-              stroke: `rgba(232,228,228,44% )`,
+              stroke: `${darkmode ? "rgba(232,228,228,44%)" : "rgba(255,255,255)"}`,
               strokeLinecap: "butt",
               transition: "stroke-dashoffset 1s ease 0s",
               transform: "rotate",
               strokeWidth: 4,
             },
             trail: {
-              stroke: `rgba(0,0,0,${(remainTime / 60) * 100}`,
+              stroke: `${darkmode ? "rgba(0,0,0)" : "rgba(0,0,0)"}`,
               strokeLinecap: "butt",
               strokeWidth: 4,
             },
           }}
         >
           <div className="flex h-full flex-col py-4 font-['TTLaundryGothicB']">
-            <p>
-              남은 시간 <em className="pl-1 text-dark-txt-1">{remainTime}</em>
+            <p className="text-lg">
+              남은 시간{" "}
+              <em className={`pl-1 ${darkmode ? "text-dark-txt-1" : ""}`}>
+                {remainTime}
+              </em>
             </p>
-            <p className="flex h-[70%] items-center justify-center text-xl">
-              <strong className="pr-4 text-8xl text-dark-txt-1">{count}</strong>
+            <p className="flex h-[70%] items-center justify-center text-3xl">
+              <strong
+                className={`pr-4 text-8xl ${darkmode ? "text-dark-txt-1" : ""}`}
+              >
+                {count}
+              </strong>
               회
             </p>
           </div>
@@ -93,7 +99,7 @@ export default function Record() {
         )}
       </div>
       <div
-        className={`w-full justify-self-end px-2 text-center text-sm ${darkmode ? "text-white" : "text-black"}`}
+        className={`w-full justify-self-end text-center text-sm tracking-wider ${darkmode ? "text-white" : "text-black"}`}
       >
         <p>반려동물이 깊이 잠들었을 때 측정해주세요. </p>
         <p>가슴이나 배가 올라갔다 내려왔을 때 버튼을 눌러주세요.</p>
@@ -104,6 +110,17 @@ export default function Record() {
           <p>정확한 검진을 위해서는 전문의와 상의하세요.</p>
         </div>
       </div>
+      {modal ? (
+        <Modal
+          result={{ time: getTime(), name: "", counts: count }}
+          closeFn={() => {
+            setModal(false);
+            setCount(0);
+          }}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
