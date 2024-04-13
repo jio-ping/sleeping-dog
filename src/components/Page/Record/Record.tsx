@@ -4,6 +4,7 @@ import Modal from "@/components/Molecules/Modal/Modal.tsx";
 import { getTime } from "@/utils/index";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import useMode from "@/store/useMode";
+import useStorage from "@/store/useStorage";
 
 /*
 
@@ -28,6 +29,7 @@ export default function Record() {
   const [count, setCount] = useState(0);
   const [modal, setModal] = useState(false);
   const { darkmode } = useMode((state) => state);
+  const { name } = useStorage((state) => state);
 
   useEffect(() => {
     let countId: number;
@@ -112,7 +114,7 @@ export default function Record() {
       </div>
       {modal ? (
         <Modal
-          result={{ time: getTime(), name: "", counts: count }}
+          result={{ time: getTime(), name: name, counts: count }}
           closeFn={() => {
             setModal(false);
             setCount(0);
