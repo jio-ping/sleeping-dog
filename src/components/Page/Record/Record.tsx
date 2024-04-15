@@ -19,7 +19,7 @@ import useMode from "@/store/useMode";
 */
 
 const INITIAL = {
-  second: 10,
+  second: 60,
 };
 
 export default function Record() {
