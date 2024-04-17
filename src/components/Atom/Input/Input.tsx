@@ -2,11 +2,13 @@
 엔터 누르면 자동으로 로컬스토리지에 저장? | 디바운싱 적용해서 로컬스토리지에 저장? -> 상태관리해야됨 | 그냥 초점 이동하면 저장?
 ! */
 import useMode from "@/store/useMode";
+import useStorage from "@/store/useStorage";
 export default function Input() {
+  const { setName } = useStorage((state) => state);
   const handleSaveName = () => {
     const name = document.querySelector<HTMLInputElement>("#petName");
     if (name) {
-      localStorage.setItem("petName", name.value);
+      setName(name.value);
     }
   };
   const darkmode = useMode((state) => state.darkmode);
