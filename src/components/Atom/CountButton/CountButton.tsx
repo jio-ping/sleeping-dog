@@ -10,7 +10,7 @@ export default function CountButton({ children, handleFn }: Button) {
   return (
     <button
       onClick={handleFn}
-      className={`rounded-[30px] border-4 px-7 py-2 font-['TTLaundryGothicB'] text-xl ${darkmode ? " text-black text-dark-gray hover:bg-white hover:text-black" : "border-light-black text-light-black hover:border-white hover:bg-[#A1C7E3] hover:text-white"}`}
+      className={`rounded-[30px] border-4 px-7 py-2 font-['TTLaundryGothicB'] text-xl ${darkmode ? "text-black text-dark-gray" : "hover:border-white] border-light-black text-light-black "}`}
     >
       {children}
     </button>
