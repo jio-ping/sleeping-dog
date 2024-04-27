@@ -4,7 +4,7 @@
 import useMode from "@/store/useMode";
 import useStorage from "@/store/useStorage";
 export default function Input() {
-  const { setName } = useStorage((state) => state);
+  const { setName, name } = useStorage((state) => state);
   const handleSaveName = () => {
     const name = document.querySelector<HTMLInputElement>("#petName");
     if (name) {
@@ -20,7 +20,8 @@ export default function Input() {
         
         ${darkmode ? "border-dark-txt-1 text-dark-txt-1 " : " border-black text-black"}`}
         type="text"
-        placeholder="이름🐶🐱"
+        placeholder={name ? name : "이름🐶"}
+        autoComplete="off"
         onBlur={handleSaveName}
       />
     </>
