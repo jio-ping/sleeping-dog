@@ -1,9 +1,7 @@
 export default function testResult(counts: number): string {
-  if (counts < 15) {
-    return "저호흡이에요 😢";
-  } else if (15 <= counts && counts <= 20) {
-    return "정상이에요 ☺️";
+  if (10 <= counts && counts <= 25) {
+    return "정상법위예요 ☺️";
   } else {
-    return "과호흡이에요 😵‍💫";
+    return "지속적인 관찰이 필요해요 😵‍💫";
   }
 }
