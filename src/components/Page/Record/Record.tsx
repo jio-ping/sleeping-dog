@@ -4,6 +4,7 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
+  ChartOptions,
   PointElement,
   LineElement,
   Title,
@@ -44,15 +45,15 @@ export default function Record() {
       },
     ],
   };
-  const options = {
-    // responsive: true,
+  const options: ChartOptions<"line"> = {
     scales: {
       x: {
         ticks: {
-          callback: function (val): string {
-            console.log(this);
-            const label = this.getLabelForValue(val);
-            return label.slice(0, label.search(" "));
+          callback: function (val) {
+            if (typeof val === "number") {
+              const label = this.getLabelForValue(val);
+              return label.slice(0, label.search(" "));
+            }
           },
         },
       },
