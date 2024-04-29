@@ -7,10 +7,17 @@ function checkMode(): boolean {
 
 type ModeState = {
   darkmode: boolean;
+  currentState: "measure" | "record";
   convertMode: () => void;
+  convertState: () => void;
 };
 
 const useMode = create<ModeState>((set) => ({
+  currentState: "record",
+  convertState: () =>
+    set((state) => ({
+      currentState: state.currentState === "record" ? "measure" : "record",
+    })),
   darkmode: checkMode(),
   convertMode: () => set((state) => ({ darkmode: !state.darkmode })),
 }));
