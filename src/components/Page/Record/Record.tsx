@@ -1,4 +1,4 @@
-import { Input, ModeButton } from "@/components/Atom/index";
+import { Input, ModeButton, StateButton } from "@/components/Atom/index";
 
 import {
   Chart as ChartJS,
@@ -77,7 +77,8 @@ export default function Record() {
     <div className="flex h-full flex-col items-center justify-between gap-12 p-4">
       <div className="flex w-full justify-between">
         <Input />
-        <div className="flex">
+        <div className="flex gap-2">
+          <StateButton />
           <ModeButton />
         </div>
       </div>
