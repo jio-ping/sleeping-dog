@@ -2,8 +2,8 @@ import useMode from "@/store/useMode";
 import { getTime } from "@/utils/index";
 import useStorage from "@/store/useStorage";
 import { useState, useEffect } from "react";
-import Modal from "@/components/Molecules/Modal/Modal.tsx";
-import { Input, ModeButton, CountButton } from "@/components/Atom/index";
+import { Modal, Header } from "@/components/Molecules/index";
+import { CountButton } from "@/components/Atom/index";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 /*
 
@@ -48,10 +48,7 @@ export default function Measure() {
 
   return (
     <div className="relative flex h-full flex-col items-center justify-between p-4">
-      <div className="flex w-full justify-between">
-        <Input />
-        <ModeButton />
-      </div>
+      <Header />
       <div className="w-[75%] text-center ">
         <CircularProgressbarWithChildren
           counterClockwise={true}

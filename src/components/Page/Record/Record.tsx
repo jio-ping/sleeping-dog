@@ -1,5 +1,3 @@
-import { Input, ModeButton, StateButton } from "@/components/Atom/index";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,6 +12,7 @@ import {
 import { Line } from "react-chartjs-2";
 import useStorage from "@/store/useStorage";
 import useMode from "@/store/useMode";
+import { Header } from "@/components/Molecules/index";
 
 ChartJS.register(
   CategoryScale,
@@ -75,13 +74,7 @@ export default function Record() {
   };
   return (
     <div className="flex h-full flex-col items-center justify-between gap-12 p-4">
-      <div className="flex w-full justify-between">
-        <Input />
-        <div className="flex gap-2">
-          <StateButton />
-          <ModeButton />
-        </div>
-      </div>
+      <Header />
       <div className="w-full">
         <Line data={data} options={options} />
 
