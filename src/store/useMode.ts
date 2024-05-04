@@ -13,7 +13,7 @@ type ModeState = {
 };
 
 const useMode = create<ModeState>((set) => ({
-  currentState: "record",
+  currentState: "measure",
   convertState: () =>
     set((state) => ({
       currentState: state.currentState === "record" ? "measure" : "record",
