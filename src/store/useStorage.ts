@@ -10,6 +10,7 @@ interface StorageState {
   setName: (enteredName: string) => void;
   record: Record[];
   setRecord: ({ dateTime, counts }: Record) => void;
+  clearRecord: () => void;
 }
 
 const useStorage = create<StorageState>()(
@@ -22,6 +23,7 @@ const useStorage = create<StorageState>()(
         const newRecord = [...get().record, { dateTime, counts }];
         set({ record: newRecord });
       },
+      clearRecord: () => set({ record: [] }),
     }),
     {
       name: "petState",
