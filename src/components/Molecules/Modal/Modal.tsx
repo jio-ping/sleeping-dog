@@ -15,7 +15,12 @@ interface ModalProps {
 export default function Modal({ closeFn, result }: ModalProps) {
   const { time, name, counts } = result;
   const darkmode = useMode((state) => state.darkmode);
+  const convertState = useMode((state) => state.convertState);
   const setRecord = useStorage((state) => state.setRecord);
+  const handleRecord = () => {
+    setRecord({ dateTime: time, counts: counts });
+    convertState();
+  };
   return (
     <dialog
       open={true}
@@ -40,10 +45,7 @@ export default function Modal({ closeFn, result }: ModalProps) {
         >
           닫기 🖐️
         </button>
-        <button
-          className="flex-grow py-2"
-          onClick={() => setRecord({ dateTime: time, counts: counts })}
-        >
+        <button className="flex-grow py-2" onClick={handleRecord}>
           기록 📝
         </button>
       </div>

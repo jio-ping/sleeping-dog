@@ -1,5 +1,3 @@
-import { Input, ModeButton, StateButton } from "@/components/Atom/index";
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,6 +12,8 @@ import {
 import { Line } from "react-chartjs-2";
 import useStorage from "@/store/useStorage";
 import useMode from "@/store/useMode";
+import { Header } from "@/components/Molecules/index";
+import { CountButton } from "@/components/Atom";
 
 ChartJS.register(
   CategoryScale,
@@ -28,6 +28,7 @@ ChartJS.register(
 export default function Record() {
   const record = useStorage((state) => state.record);
   const name = useStorage((state) => state.name);
+  const clearRecord = useStorage((state) => state.clearRecord);
   const darkmode = useMode((state) => state.darkmode);
   const labels: string[] = [];
   const countsArr: number[] = [];
@@ -75,28 +76,23 @@ export default function Record() {
   };
   return (
     <div className="flex h-full flex-col items-center justify-between gap-12 p-4">
-      <div className="flex w-full justify-between">
-        <Input />
-        <div className="flex gap-2">
-          <StateButton />
-          <ModeButton />
-        </div>
-      </div>
-      <div className="w-full">
+      <Header />
+      <div className="flex w-full flex-col items-center">
         <Line data={data} options={options} />
 
         <ul
-          className={`py-4 text-center text-sm  ${darkmode ? "text-dark-txt-1" : "text-black"}`}
+          className={`pb-12 pt-4 text-center text-sm  ${darkmode ? "text-dark-txt-1" : "text-black"}`}
         >
           <li className="pb-3 text-white">
             클릭시 측정 시간과 호흡수를 확인할 수 있습니다.
           </li>
           <li>반려동물의 호흡수는 30회를 넘지 않아야합니다. </li>
           <li className="text-balance">
-            기록이 한 방향으로 변화하는 양상이라면,주치의와의 자세한 상담이
+            기록이 한 방향으로 변화하는 양상이라면, 주치의와의 자세한 상담이
             필요합니다.
           </li>
         </ul>
+        <CountButton handleFn={clearRecord}>초기화</CountButton>
       </div>
       <div
         className={`text-md flex w-full flex-grow flex-col justify-end justify-self-end text-pretty px-10 text-center tracking-wider ${darkmode ? "text-dark-txt-1" : "text-black"}`}
