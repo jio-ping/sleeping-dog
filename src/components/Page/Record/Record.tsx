@@ -84,7 +84,7 @@ export default function Record() {
           className={`pb-12 pt-4 text-center text-sm  ${darkmode ? "text-dark-txt-1" : "text-black"}`}
         >
           <li className="pb-3 text-white">
-            클릭시 측정 시간과 호흡수를 확인할 수 있습니다.
+            클릭 시 측정 시간과 호흡수를 확인할 수 있습니다.
           </li>
         </ul>
         <CountButton handleFn={clearRecord}>초기화</CountButton>
