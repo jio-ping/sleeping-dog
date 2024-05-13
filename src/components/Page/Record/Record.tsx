@@ -83,22 +83,25 @@ export default function Record() {
         <ul
           className={`pb-12 pt-4 text-center text-sm  ${darkmode ? "text-dark-txt-1" : "text-black"}`}
         >
-          <li className="pb-3 text-white">
-            클릭 시 측정 시간과 호흡수를 확인할 수 있습니다.
+          <li
+            className={`pb-3 font-semibold ${darkmode ? "text-dark-gray " : "text-black"}`}
+          >
+            클릭 시 측정 시간과 호흡 수를 확인할 수 있습니다.
+          </li>
+          <li>수면 시 호흡수는 30회를 넘지 않아야합니다. </li>
+          <li className="text-pretty px-4 py-1">
+            기록이 한 방향으로 변화하는 양상이라면,
+            <br />
+            주치의와의 자세한 상담이 필요합니다.
           </li>
         </ul>
         <CountButton handleFn={clearRecord}>초기화</CountButton>
       </div>
       <ul
-        className={`flex w-full flex-grow flex-col justify-end justify-self-end text-pretty px-10 text-center text-sm tracking-wider ${darkmode ? "text-dark-txt-1" : "text-black"}`}
+        className={`flex w-full flex-grow flex-col justify-end gap-1 justify-self-end text-pretty px-8 text-center text-sm tracking-wider ${darkmode ? "text-dark-txt-1" : "text-black"}`}
       >
-        <li>반려동물의 호흡수는 30회를 넘지 않아야합니다. </li>
-        <li className="text-balance">
-          기록이 한 방향으로 변화하는 양상이라면, 주치의와의 자세한 상담이
-          필요합니다.
-        </li>
-        <li className="text-md">
-          연속성 있는 기록을 위해 같은 브라우저 환경에서 접속해주세요.
+        <li className="text-md font-semibold tracking-widest">
+          연속성 있는 기록을 위해 <br /> 같은 브라우저 환경에서 접속해주세요.
         </li>
       </ul>
     </div>

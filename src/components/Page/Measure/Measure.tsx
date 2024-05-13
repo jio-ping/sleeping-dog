@@ -56,14 +56,14 @@ export default function Measure() {
           className="mb-8"
           styles={{
             path: {
-              stroke: `${darkmode ? "rgba(232,228,228,44%)" : "rgba(255,255,255)"}`,
+              stroke: `${darkmode ? "rgba(232,228,228,44%)" : "rgba(0,0,0,40%)"}`,
               strokeLinecap: "butt",
               transition: "stroke-dashoffset 1s ease 0s",
               transform: "rotate",
               strokeWidth: 4,
             },
             trail: {
-              stroke: `${darkmode ? "rgba(0,0,0)" : "rgba(0,0,0)"}`,
+              stroke: `${darkmode ? "rgba(0,0,0,40%)" : "rgba(255,255,255,20%)"}`,
               strokeLinecap: "butt",
               strokeWidth: 4,
             },
@@ -71,14 +71,15 @@ export default function Measure() {
         >
           <div className="flex h-full flex-col py-4 font-['TTLaundryGothicB']">
             <p className="text-lg">
-              남은 시간{" "}
+              남은 시간:
               <em className={`pl-1 ${darkmode ? "text-dark-txt-1" : ""}`}>
                 {remainTime}
-              </em>
+              </em>{" "}
+              초
             </p>
             <p className="flex h-[70%] items-center justify-center text-3xl">
               <strong
-                className={`pr-4 text-8xl ${darkmode ? "text-dark-txt-1" : ""}`}
+                className={`pr-4 text-8xl ${darkmode ? "text-dark-txt-1" : "text-light-blak"}`}
               >
                 {count}
               </strong>
